@@ -1,0 +1,54 @@
+.Contenedor_servicios{
+    width: 250px;          /* 👈 Tamaño fijo */
+    height: auto;
+    background-color: #ffeef3;
+    margin: 15px;
+    text-align: center;
+    border-radius: 10px;
+    padding: auto;
+    
+}
+
+.Servicio{
+    display: flex;
+     flex-wrap: wrap;
+}
+
+body{
+    background-color: rgb(230, 163, 204);
+}
+
+.TituloH2{
+    text-align: center;
+
+}
+
+.gallery{
+    
+    
+    margin: 15px;
+    padding: auto;
+}
+
+.barra{
+    text-decoration: none;
+    margin-left: 600px;
+    font-size: 16px;
+    
+}
+
+.Contenedor_encabezado{
+    display: flex;
+    align-items: center;
+}
+
+a{
+    margin-left: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.titulo_principal{
+    padding-left: 15px;
+}
