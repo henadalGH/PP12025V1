@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservas{% endblock %}
+
+{% block body %}
+    <label for="">Elija un servicio</label>
+        <select>
+            {% for servicio in servicio%}
+                <option>{{ servicio.nombre }} ({{servicio.duracion}} minutos)</option>
+            {% endfor %}
+        </select>
+
+            {#sector peluquero#}
+        <label for="">Elija a su peluquero</label>
+        <select>
+            {% for peluquero in peluquero %}
+                <option>{{ peluquero.nombre }} {{peluquero.apellido}}</option>
+            {% endfor %}
+        </select>
+{% endblock %}

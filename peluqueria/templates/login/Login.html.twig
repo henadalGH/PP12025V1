@@ -1,0 +1,26 @@
+{# templates/security/login.html.twig #}
+{% extends 'base.html.twig' %}
+{# ... #}
+{% block body %}
+    <div class="login">
+    {% if error %}
+        <div><h4>Usuario o contraseña incorrecta</h4></div>
+        
+    {% endif %}
+        
+        <h2>Iniciar sección</h2>
+            <form action="{{ path('login') }}" method="post">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="{{ last_username }}" />
+        <br><br>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" />
+        <br><br>
+
+        <button type="submit" class="boton1">Login</button>
+    </form>
+        {#<button class="boton2"><a href="{{path('app_registrarse')}}">Registrarse</a></button>
+        #}
+    </div>
+{% endblock %}

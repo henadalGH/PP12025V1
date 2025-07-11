@@ -37,9 +37,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $apellido = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $rol = null;
-
     #[ORM\OneToOne(mappedBy: 'usuario', cascade: ['persist', 'remove'])]
     private ?Peluquero $peluquero = null;
 
@@ -136,18 +133,6 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     public function setApellido(string $apellido): static
     {
         $this->apellido = $apellido;
-
-        return $this;
-    }
-
-    public function getRol(): ?string
-    {
-        return $this->rol;
-    }
-
-    public function setRol(string $rol): static
-    {
-        $this->rol = $rol;
 
         return $this;
     }

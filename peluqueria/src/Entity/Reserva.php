@@ -31,8 +31,6 @@ class Reserva
     #[ORM\Column(length: 100)]
     private ?string $estado = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reserva')]
-    private ?Peluquero $pelu = null;
 
     public function getId(): ?int
     {
@@ -95,18 +93,6 @@ class Reserva
     public function setEstado(string $estado): static
     {
         $this->estado = $estado;
-
-        return $this;
-    }
-
-    public function getPelu(): ?Peluquero
-    {
-        return $this->pelu;
-    }
-
-    public function setPelu(?Peluquero $pelu): static
-    {
-        $this->pelu = $pelu;
 
         return $this;
     }

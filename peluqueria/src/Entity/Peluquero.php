@@ -27,12 +27,6 @@ class Peluquero
     #[ORM\OneToMany(targetEntity: Reserva::class, mappedBy: 'peluquero', orphanRemoval: true)]
     private Collection $reservas;
 
-    /**
-     * @var Collection<int, Reserva>
-     */
-    #[ORM\OneToMany(targetEntity: Reserva::class, mappedBy: 'pelu')]
-    private Collection $reserva;
-
     #[ORM\OneToOne(inversedBy: 'peluquero', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Usuario $usuario = null;
@@ -41,7 +35,6 @@ class Peluquero
     {
         $this->disponibilidads = new ArrayCollection();
         $this->reservas = new ArrayCollection();
-        $this->reserva = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,7 +63,6 @@ class Peluquero
     public function removeDisponibilidad(Disponibilidad $disponibilidad): static
     {
         if ($this->disponibilidads->removeElement($disponibilidad)) {
-            // set the owning side to null (unless already changed)
             if ($disponibilidad->getPeluquero() === $this) {
                 $disponibilidad->setPeluquero(null);
             }
@@ -100,21 +92,12 @@ class Peluquero
     public function removeReserva(Reserva $reserva): static
     {
         if ($this->reservas->removeElement($reserva)) {
-            // set the owning side to null (unless already changed)
             if ($reserva->getPeluquero() === $this) {
                 $reserva->setPeluquero(null);
             }
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, Reserva>
-     */
-    public function getReserva(): Collection
-    {
-        return $this->reserva;
     }
 
     public function getUsuario(): ?Usuario

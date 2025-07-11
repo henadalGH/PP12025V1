@@ -15,8 +15,8 @@ class ServicioFixtures extends Fixture
             "Corte de Cabello",
             "Coloración",
             "Peinado",
-            "Manicure",
             "Pedicure",
+            "Manicure",
             "Tratamiento Capilar",
             "Depilación"
         ];
