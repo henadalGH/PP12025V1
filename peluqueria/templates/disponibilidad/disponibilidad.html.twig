@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registrar Disponibilidad{% endblock %}
+
+{% block body %}
+    <div class="disponibilidad-container">
+    <link rel="stylesheet" href="{{ asset('css/disponibilidad.css') }}">
+        <h1>Registro de Disponibilidad</h1>
+
+        <form action="{{ path('disponibilidad') }}" method="post">
+            <label for="dia">Día:</label>
+            <input type="date" id="dia" name="dia" required>
+
+            <label for="inicio">Hora de inicio:</label>
+            <input type="time" id="inicio" name="inicio" required>
+
+            <label for="fin">Hora de fin:</label>
+            <input type="time" id="fin" name="fin" required>
+
+            <label for="peluquero">Elegir un peluquero:</label>
+            <select name="peluquero">
+                {% for peluquero in peluquero %}
+                    <option>{{ peluquero.nombre }} {{ peluquero.apellido }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="activo">¿Disponible?</label>
+            <select name="activo" id="activo">
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+            </select>
+
+            <button type="submit">Agregar Disponibilidad</button>
+        </form>
+    </div>
+{% endblock %}

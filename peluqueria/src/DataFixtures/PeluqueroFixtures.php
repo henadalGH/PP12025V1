@@ -1,33 +1,30 @@
 <?php
+
 namespace App\DataFixtures;
 
 use App\Entity\Peluquero;
-use App\Repository\UsuarioRepository;
+use App\Entity\Usuario;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class PeluqueroFixtures extends Fixture implements DependentFixtureInterface
 {
-    public function __construct(private UsuarioRepository $usuarioRepository) {}
-
     public function load(ObjectManager $manager): void
     {
-        // Correos de usuarios con rol ROLE_PELUQUERO
-        $emails = [
-            'mariaantoniasis@gmail.com',
-            'andreronchi@gmail.com',
-            'lauravareta@gmail.com',
-        ];
+        // Solo los usuarios con rol ROLE_PELUQUERO (índices 1, 2, 3)
+        for ($i = 1; $i <= 3; $i++) {
+            /** @var Usuario $usuario */
+            $usuario = $this->getReference('usuario_' . $i);
 
-        foreach ($emails as $email) {
-            $usuario = $this->usuarioRepository->findOneBy(['email' => $email]);
-
-            if ($usuario && $usuario->getPeluquero() === null) {
+            // Si el peluquero no existe todavía
+            if ($usuario->getPeluquero() === null) {
                 $peluquero = new Peluquero();
-                $peluquero->setUsuario($usuario); // solo relacionamos, sin nombre
+                $peluquero->setUsuario($usuario);
 
                 $manager->persist($peluquero);
+
+                $this->addReference('peluquero_' . ($i - 1), $peluquero);
             }
         }
 
