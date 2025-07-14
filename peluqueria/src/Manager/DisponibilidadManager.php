@@ -49,4 +49,9 @@ class DisponibilidadManager
 
         return $disponibilidad;
     }
+
+    public function getpeluquero()
+    {
+        $usuarios = $this->usuarioRepository->findAll();
+    }
 }

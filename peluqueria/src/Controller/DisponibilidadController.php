@@ -13,7 +13,7 @@ final class DisponibilidadController extends AbstractController
     #[Route('/disponibilidad', name: 'disponibilidad')]
     public function disponibilidad(ReservaManager $reservaManager): Response
     {
-        $peluquero = $reservaManager->peluqueroAll();
+        $peluquero = $reservaManager->findAllPeluquero();
 
         return $this->render('disponibilidad/disponibilidad.html.twig', [
             'peluquero' => $peluquero

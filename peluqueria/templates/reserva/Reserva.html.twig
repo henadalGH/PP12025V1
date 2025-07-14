@@ -2,44 +2,27 @@
 
 {% block title %}Reservas{% endblock %}
 
-
 {% block body %}
-<link href="{{ asset('css/reserva.css') }}" rel="stylesheet" />
-    
-    <div class="Contenedor_encabezado">
-    <h1 class="titulo_principal">Peluqueria Elegante</h1>
-    
-        <div class="barra">
-            <a>Inico</a>
-            <a href="{{ path('login') }}">Ingresar</a>
-            <a>Servicio</a>
-            <a>Contacto</a>
-        </div>
-    </div>
-    <form action="{{ path('nuevo_registro') }}" method="post" class="form-container">
+<link href="{{ asset('CSS/reserva.css') }}" rel="stylesheet" />
 
-    <div class="selects-footer">
-        <div>
-            <label for="servicio">Elija un servicio</label>
-            <select name="servicio" id="servicio" required>
-                {% for s in servicio %}
-                    <option value="{{ s.id }}">{{ s.nombre }} ({{ s.duracion }} minutos)</option>
-                {% endfor %}
-            </select>
-        </div>
+<form action="{{ path('enviar_Peluquero') }}" method="post">
+    {#<label for="servicio">Elija un servicio</label>
+    <select name="servicio" id="servicio" required>
+        {% for servicio in servicio %}
+            <option value="{{ servicio.id }}">{{ servicio.nombre }} ({{ servicio.duracion }} minutos)</option>
+        {% endfor %}
+    </select>#}
 
-        <div>
-            <label for="peluquero">Elija a su peluquero</label>
-            <select name="peluquero" id="peluquero" required>
-                {% for p in peluquero %}
-                    <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
+    <label for="peluquero">Elija a su peluquero</label>
+    <select name="peluquero" id="peluquero" required>
+        {% for peluquero in peluquero %}
+            <option value="{{ peluquero.id }}">{{ peluquero.nombre }} {{ peluquero.apellido }}</option>
+        {% endfor %}
+    </select>
+
+    {# Opcional: token CSRF para seguridad #}
+    <input type="hidden" name="_token" value="{{ csrf_token('ver_disponibilidad') }}">
 
     <button type="submit">Siguiente</button>
 </form>
-
-
 {% endblock %}

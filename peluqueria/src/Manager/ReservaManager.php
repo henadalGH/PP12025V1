@@ -25,7 +25,7 @@ class ReservaManager
         return $this->servicioRepository->findAll();
     }
 
-    public function findAllPeuquero()
+    public function findAllPeluquero()
 {
     $usuarios = $this->usuarioRepository->findAll();
     $peluqueros = [];
@@ -42,9 +42,7 @@ class ReservaManager
     public function obtenerDisponibilidadPorPeluquero(int $idPeluquero): array
     {
         return $this->disponibilidadRepository->findBy(
-            ['peluquero' => $idPeluquero, 'activo' => true],
-            ['fecha' => 'ASC', 'horaInicio' => 'ASC']
-        );
+            ['peluquero' => $idPeluquero]);
     }
 
     }

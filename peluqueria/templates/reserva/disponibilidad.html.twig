@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservas{% endblock %}
+
+{% block body %}
+    <h2>Reserva online</h2>
+
+    <p>Estos son nuestros turnos disponibles para el peluquero: {#{}#}</p>
+    {#<ul>
+        {% for d in disponibilidades %}
+            <li>
+                Día: {{ d.dia|date('d/m/Y') }}<br>
+                Horario: {{ d.horaInicio|date('H:i') }} - {{ d.horaFin|date('H:i') }}
+            </li>
+        {% else %}
+            <li>No hay horarios disponibles para este peluquero.</li>
+        {% endfor %}
+    </ul>#}
+{% endblock %}
