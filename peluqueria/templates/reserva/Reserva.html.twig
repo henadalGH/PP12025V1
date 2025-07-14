@@ -6,12 +6,12 @@
 <link href="{{ asset('CSS/reserva.css') }}" rel="stylesheet" />
 
 <form action="{{ path('enviar_Peluquero') }}" method="post">
-    {#<label for="servicio">Elija un servicio</label>
+    {<label for="servicio">Elija un servicio</label>
     <select name="servicio" id="servicio" required>
         {% for servicio in servicio %}
             <option value="{{ servicio.id }}">{{ servicio.nombre }} ({{ servicio.duracion }} minutos)</option>
         {% endfor %}
-    </select>#}
+    </select>}
 
     <label for="peluquero">Elija a su peluquero</label>
     <select name="peluquero" id="peluquero" required>
@@ -19,9 +19,6 @@
             <option value="{{ peluquero.id }}">{{ peluquero.nombre }} {{ peluquero.apellido }}</option>
         {% endfor %}
     </select>
-
-    {# Opcional: token CSRF para seguridad #}
-    <input type="hidden" name="_token" value="{{ csrf_token('ver_disponibilidad') }}">
 
     <button type="submit">Siguiente</button>
 </form>

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registrar Disponibilidad{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ asset('css/reserva.css') }}">
+
+{% set meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'] %}
+
+<h2>Calendario de disponibilidad - {{ meses[mes - 1] }}</h2>
+
+<div style="margin-bottom: 15px;">
+    {% set mesAnterior = mes - 1 < 1 ? 12 : mes - 1 %}
+    {% set mesSiguiente = mes + 1 > 12 ? 1 : mes + 1 %}
+
+    <a href="{{ path('mostrar_disponibilidad', {'idPeluquero': idPeluquero}) }}?mes={{ mesAnterior }}{% if diaSeleccionado %}&dia={{ diaSeleccionado }}{% endif %}">← Mes anterior</a>
+    |
+    <a href="{{ path('mostrar_disponibilidad', {'idPeluquero': idPeluquero}) }}?mes={{ mesSiguiente }}{% if diaSeleccionado %}&dia={{ diaSeleccionado }}{% endif %}">Mes siguiente →</a>
+</div>
+
+{# Extraer días disponibles #}
+{% set diasDelMes = [] %}
+{% for disp in disponibilidades %}
+    {% set diasDelMes = diasDelMes|merge([disp.dia]) %}
+{% endfor %}
+
+<table class="calendario">
+    <thead>
+        <tr>
+            <th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th><th>Dom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set dia = 1 %}
+        {% for semana in 1..5 %}
+            <tr>
+                {% for diaSemana in 1..7 %}
+                    {% if dia <= 31 %}
+                        {% if dia in diasDelMes %}
+                            {% if diaSeleccionado == dia %}
+                                <td class="dia-seleccionado">{{ dia }}</td>
+                            {% else %}
+                                <td class="dia-disponible">
+                                    <a href="{{ path('mostrar_disponibilidad', {'idPeluquero': idPeluquero}) }}?mes={{ mes }}&dia={{ dia }}">
+                                        {{ dia }}
+                                    </a>
+                                </td>
+                            {% endif %}
+                        {% else %}
+                            <td class="inactivo">–</td>
+                        {% endif %}
+                        {% set dia = dia + 1 %}
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{# Mostrar horarios para día seleccionado #}
+{% if diaSeleccionado %}
+    <h3 style="margin-top: 30px;">Horarios para el día {{ diaSeleccionado }} de {{ meses[mes - 1] }}</h3>
+
+    {% set disponibilidadSeleccionada = null %}
+    {% for disp in disponibilidades %}
+        {% if diaSeleccionado == disp.dia %}
+            {% set disponibilidadSeleccionada = disp %}
+        {% endif %}
+    {% endfor %}
+
+    {% if disponibilidadSeleccionada and disponibilidadSeleccionada.intervalos is not empty %}
+        <form action="{{ path('nueva_reservas') }}" method="POST">
+            <input type="hidden" name="idPeluquero" value="{{ idPeluquero }}">
+            <input type="hidden" name="dia" value="{{ diaSeleccionado }}">
+            <input type="hidden" name="mes" value="{{ mes }}">
+            <label for="hora">Seleccioná una hora:</label>
+            <select name="hora" id="hora" required>
+                {% for hora in disponibilidadSeleccionada.intervalos %}
+                    <option value="{{ hora }}">{{ hora }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Reservar</button>
+        </form>
+    {% else %}
+        <p class="no-horarios">No hay horarios disponibles para este día.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
