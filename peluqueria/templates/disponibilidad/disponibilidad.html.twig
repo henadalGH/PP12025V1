@@ -4,10 +4,19 @@
 
 {% block body %}
     <div class="disponibilidad-container">
-    <link rel="stylesheet" href="{{ asset('css/disponibilidad.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/disponibilidad.css') }}">
         <h1>Registro de Disponibilidad</h1>
 
-        <form action="{{ path('disponibilidad') }}" method="post">
+        {# Aquí mostramos mensajes flash de error o éxito #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <form action="{{ path('nueva_disponibilidad') }}" method="post">
             <label for="dia">Día:</label>
             <input type="date" id="dia" name="dia" required>
 
@@ -18,19 +27,19 @@
             <input type="time" id="fin" name="fin" required>
 
             <label for="peluquero">Elegir un peluquero:</label>
-            <select name="peluquero">
+            <select name="peluquero" required>
                 {% for peluquero in peluquero %}
-                    <option>{{ peluquero.nombre }} {{ peluquero.apellido }}</option>
+                    <option value="{{ peluquero.id }}">{{ peluquero.nombre }} {{ peluquero.apellido }}</option>
                 {% endfor %}
             </select>
 
             <label for="activo">¿Disponible?</label>
-            <select name="activo" id="activo">
+            <select name="activo" id="activo" required>
                 <option value="1">Sí</option>
                 <option value="0">No</option>
             </select>
 
-            <button type="submit">Agregar Disponibilidad</button>
+            <button type="submit">Aceptar</button>
         </form>
     </div>
 {% endblock %}

@@ -21,7 +21,7 @@ class UsuarioFixtures extends Fixture
         $nombres = ["Juan", "Maria", "Andres", "Laura"];
         $apellidos = ["Perez", "Antoniasis", "Ronchi", "Vareta"];
         $emails = ["juanperez@gmail.com", "mariaantoniasis@gmail.com", "andreronchi@gmail.com", "lauravareta@gmail.com"];
-        $roles = ["ROLE_ADMIN", "ROLE_PELUQUERO", "ROLE_PELUQUERO", "ROLE_PELUQUERO"];
+        $roles = [ "ROLE_PELUQUERO", "ROLE_PELUQUERO", "ROLE_PELUQUERO","ROLE_ADMIN"];
 
         for ($i = 0; $i < 4; $i++) {
             $email = $emails[$i];

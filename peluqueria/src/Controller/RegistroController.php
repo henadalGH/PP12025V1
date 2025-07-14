@@ -17,7 +17,7 @@ final class RegistroController extends AbstractController
         $this->registroManager = $registroManager;
     }
 
-    #[Route('/registro/nuevo', name: 'Nuevo_registro', methods: ['POST'])]
+    #[Route('/registro/nuevo', name: 'nuevo_registro', methods: ['POST'])]
     public function crearUsuario(Request $request): Response
     {
         $usuario = [
@@ -25,7 +25,7 @@ final class RegistroController extends AbstractController
             'apellido' => $request->request->get('apellido'),
             'email'    => $request->request->get('email'),
             'password' => $request->request->get('password'),
-            'telefono' => $request->request->get('telefono'),
+            
         ];
 
         $this->registroManager->nuevoUsuario($usuario);

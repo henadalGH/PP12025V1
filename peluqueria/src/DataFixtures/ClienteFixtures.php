@@ -2,12 +2,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Peluquero;
-use App\Repository\UsuarioRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use App\Repository\UsuarioRepository;
+use App\Entity\Cliente;
 
-class PeluqueroFixtures extends Fixture
+class ClienteFixtures extends Fixture
 {
     private UsuarioRepository $usuarioRepository;
 
@@ -18,18 +18,18 @@ class PeluqueroFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Obtener todos los usuarios que ya existen en la base
+    
         $usuarios = $this->usuarioRepository->findAll();
 
         foreach ($usuarios as $usuario) {
-            if (\in_array('ROLE_PELUQUERO', $usuario->getRoles())) {
+            if (\in_array('ROLE_CLIENTE', $usuario->getRoles())) {
 
-                // Evitar duplicados si ya tiene Peluquero asignado
-                if ($usuario->getPeluquero() === null) {
-                    $peluquero = new Peluquero();
-                    $peluquero->setUsuario($usuario);
+                if ($usuario->getCliente() === null) {
+                    $cliente = new Cliente();
+                    $cliente->setUsuario($usuario); 
+                    $cliente->setContacto('123456789');
 
-                    $manager->persist($peluquero);
+                    $manager->persist($cliente);
                 }
             }
         }

@@ -2,19 +2,44 @@
 
 {% block title %}Reservas{% endblock %}
 
-{% block body %}
-    <label for="">Elija un servicio</label>
-        <select>
-            {% for servicio in servicio%}
-                <option>{{ servicio.nombre }} ({{servicio.duracion}} minutos)</option>
-            {% endfor %}
-        </select>
 
-            {#sector peluquero#}
-        <label for="">Elija a su peluquero</label>
-        <select>
-            {% for peluquero in peluquero %}
-                <option>{{ peluquero.nombre }} {{peluquero.apellido}}</option>
-            {% endfor %}
-        </select>
+{% block body %}
+<link href="{{ asset('css/reserva.css') }}" rel="stylesheet" />
+    
+    <div class="Contenedor_encabezado">
+    <h1 class="titulo_principal">Peluqueria Elegante</h1>
+    
+        <div class="barra">
+            <a>Inico</a>
+            <a href="{{ path('login') }}">Ingresar</a>
+            <a>Servicio</a>
+            <a>Contacto</a>
+        </div>
+    </div>
+    <form action="{{ path('nuevo_registro') }}" method="post" class="form-container">
+
+    <div class="selects-footer">
+        <div>
+            <label for="servicio">Elija un servicio</label>
+            <select name="servicio" id="servicio" required>
+                {% for s in servicio %}
+                    <option value="{{ s.id }}">{{ s.nombre }} ({{ s.duracion }} minutos)</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="peluquero">Elija a su peluquero</label>
+            <select name="peluquero" id="peluquero" required>
+                {% for p in peluquero %}
+                    <option value="{{ p.id }}">{{ p.nombre }} {{ p.apellido }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <button type="submit">Siguiente</button>
+</form>
+
+
 {% endblock %}
