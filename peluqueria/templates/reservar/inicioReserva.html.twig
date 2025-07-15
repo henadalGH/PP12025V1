@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block body %}
+<link href="{{ asset('CSS/cliente.css') }}" rel="stylesheet" />
+
+    {% include 'headerCliente/headerCliente.html.twig' %}
+
+            {#seccion reserva#}
+    <div class="Contenedor_citas">
+        <section ID="resevar">
+            <h2>Renova tu estilo con nosotros</h2>
+                <p>Reserva tu cita online, elige tu estilista favorito y disfruta de una experiencia única.</p>
+                <button><a href="{{ path('reservas') }}">Reservar</a></button>
+        </section>
+    </div>
+
+    <div class="Contenedor_total">
+        <section id="servicio">
+            <h2 Class="TituloH2">Nuestros servicios</h2>
+            <div class="Servicio">
+                {% for servicio in servicio %}
+                    <div class="Contenedor_servicios">
+                    <h3>{{ servicio.nombre }}</h3>
+                    <p>{{ servicio.descripcion}}<p>
+                    <p>Duracion {{servicio.duracion}} minuto</p>
+                    <p>${{servicio.precio}}</p>
+                </div>
+            {% endfor %}
+        </div>
+        </seccion>
+    </div>
+{% endblock %}

@@ -82,9 +82,13 @@
                 {% endfor %}
             </select>
             <button type="submit">Reservar</button>
+            <button type="button" onclick="window.location.href='{{ path('index') }}'">Cancelar reserva</button>
         </form>
     {% else %}
         <p class="no-horarios">No hay horarios disponibles para este día.</p>
+        <button type="button" onclick="window.location.href='{{ path('index') }}'">Cancelar reserva</button>
     {% endif %}
+{% else %}
+    <button type="button" onclick="window.location.href='{{ path('index') }}'">Cancelar reserva</button>
 {% endif %}
 {% endblock %}

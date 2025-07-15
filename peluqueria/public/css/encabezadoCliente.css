@@ -1,0 +1,52 @@
+/* ====== ENCABEZADO GENERAL ====== */
+.Contenedor_encabezado {
+    background-color: #e5e5e5;
+    padding: 40px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.titulo_principal {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #111;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ====== NAVIGATION BAR ====== */
+.barra nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.barra nav a {
+    background-color: #222;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo especial para botón de Cerrar sesión */
+.barra nav a[href*="logout"] {
+    background-color: #b93333;
+}
+
+.barra nav a[href*="logout"]:hover {
+    background-color: #991f1f;
+}
+
+.barra nav a:hover {
+    background-color: #555;
+}
+
+.barra nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}

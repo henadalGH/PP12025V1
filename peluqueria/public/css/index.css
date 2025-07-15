@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f2f2f2; /* fondo más opaco */
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+/* ======= HERO + NAV ======= */
+.hero {
+    background: #e5e5e5;  /* más suave */
+    padding: 40px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.hero-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.titulo_principal {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.nav-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nav-bar a {
+    background-color: #222;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.nav-bar a:hover {
+    background-color: #555;
+}
+
+/* ======= SECCIONES GENERALES ======= */
+main {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+section {
+    margin-top: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.seccion_titulo {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #111;
+}
+
+/* ======= SERVICIOS ======= */
+.servicios_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    padding: 0 10px;
+}
+
+.servicio_card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.servicio_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+.servicio_card h3 {
+    color: #c26ba3;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.servicio_card p {
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* ======= GALERÍA TRABAJOS ======= */
+.trabajos_galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.trabajos_galeria img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.trabajos_galeria img:hover {
+    transform: scale(1.03);
+}
+
+/* ======= CONTACTO ======= */
+#contacto {
+    background-color: #eaeaea;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 60px;
+    border-radius: 10px;
+}
+
+#contacto h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+#contacto p {
+    font-size: 1.1em;
+    color: #444;
+    max-width: 700px;
+    margin: auto;
+}
+
+/* ======= RESPONSIVO ======= */
+@media (max-width: 768px) {
+    .hero-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .titulo_principal {
+        font-size: 2rem;
+    }
+
+    .nav-bar {
+        justify-content: center;
+    }
+
+    .trabajos_galeria img {
+        height: auto;
+    }
+}

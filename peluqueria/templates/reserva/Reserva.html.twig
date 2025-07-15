@@ -3,15 +3,17 @@
 {% block title %}Reservas{% endblock %}
 
 {% block body %}
-<link href="{{ asset('CSS/reserva.css') }}" rel="stylesheet" />
+<link href="{{ asset('CSS/servicio.css') }}" rel="stylesheet" />
+    {% include 'headerCliente/headerCliente.html.twig' %}
 
+<div class="Contenedor_total">
 <form action="{{ path('enviar_Peluquero') }}" method="post">
-    {<label for="servicio">Elija un servicio</label>
+    <label for="servicio">Elija un servicio</label>
     <select name="servicio" id="servicio" required>
         {% for servicio in servicio %}
             <option value="{{ servicio.id }}">{{ servicio.nombre }} ({{ servicio.duracion }} minutos)</option>
         {% endfor %}
-    </select>}
+    </select>
 
     <label for="peluquero">Elija a su peluquero</label>
     <select name="peluquero" id="peluquero" required>
@@ -22,4 +24,5 @@
 
     <button type="submit">Siguiente</button>
 </form>
+</div>
 {% endblock %}

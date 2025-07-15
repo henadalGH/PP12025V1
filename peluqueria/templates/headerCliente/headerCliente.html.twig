@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block body %}
+<link href="{{ asset('CSS/encabezadoCliente.css') }}" rel="stylesheet" />
+<div class="Contenedor_encabezado">
+    <h1 class="titulo_principal">Peluqueria Elegante</h1>
+        <div class="barra">
+            <nav>
+                <a href="#servicio">Servicio</a>
+                <a href="#contacto">Contacto</a>
+                <a href="{{path('app_logout')}}">Cerrar sección</a>
+            </nav>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenidos{% endblock %}
+
+{% block body %}
+<link href="{{ asset('css/servicio.css') }}" rel="stylesheet" />
+    
+    <div class="Contenedor_encabezado">
+    <h1 class="titulo_principal">Peluqueria Elegante</h1>
+    
+        <div class="barra">
+            <a>Inico</a>
+            <a href="{{ path('login') }}">Ingresar</a>
+            <a>Servicio</a>
+            <a>Contacto</a>
+        </div>
+    </div>
+{% endblock %}

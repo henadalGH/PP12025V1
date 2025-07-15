@@ -15,6 +15,16 @@ class ReservaController extends AbstractController
     {
         $this->reservaManager = $reservaManager;
     }
+    
+    #[Route('/cliente', name: 'cliente')]
+    public function TraerServicio(ReservaManager $reservamanager): Response
+    {
+        $servicio = $reservamanager->findAllServicio();  
+        
+        return $this->render('reservar/inicioReserva.html.twig', [
+            'servicio' => $servicio, 
+        ]);
+    }
 
     #[Route('/reserva', name: 'reservas')]
     public function getServicio(ReservaManager $reservamanager): Response
@@ -31,7 +41,7 @@ class ReservaController extends AbstractController
     #[Route('/reserva_nueva', name: 'nueva_reservas', methods: ['POST'])]
     public function nuevaReserva(ReservaManager $reservamanager): Response
     {
-        // Implementar lógica para guardar reserva
+        
     }
 
     #[Route('/reserva/peluquero', name: 'enviar_Peluquero', methods: ['POST'])]
@@ -47,42 +57,11 @@ class ReservaController extends AbstractController
     #[Route('/disponibilidad/{idPeluquero}', name: 'mostrar_disponibilidad')]
 public function mostrarDisponibilidad(int $idPeluquero, Request $request): Response
 {
-    // Obtener el mes enviado por query (?mes=1..12), o mes actual si no viene
     $mesSeleccionado = (int) $request->query->get('mes', (new \DateTime())->format('n'));
-
-    // Obtener todas las disponibilidades para el peluquero
-    $disponibilidades = $this->reservaManager->obtenerDisponibilidadPorPeluquero($idPeluquero);
-
-    // Filtrar las disponibilidades para el mes seleccionado
-    $disponibilidadesFiltradas = array_filter($disponibilidades, function($disp) use ($mesSeleccionado) {
-        return (int)$disp->getDia()->format('n') === $mesSeleccionado;
-    });
-
-    $disponibilidadesConIntervalos = [];
-
-    foreach ($disponibilidadesFiltradas as $disp) {
-        $fecha = $disp->getDia(); // DateTime
-        $dia = (int) $fecha->format('j');
-
-        $horaInicio = $disp->getHoraInicio();
-        $horaFin = $disp->getHoraFin();
-
-        $intervalos = [];
-        $interval = new \DateInterval('PT30M');
-        $periodo = new \DatePeriod($horaInicio, $interval, $horaFin);
-
-        foreach ($periodo as $hora) {
-            $intervalos[] = $hora->format('H:i');
-        }
-
-        $disponibilidadesConIntervalos[] = [
-            'fecha' => $fecha,
-            'dia' => $dia,
-            'intervalos' => $intervalos,
-        ];
-    }
-
     $diaSeleccionado = $request->query->get('dia');
+
+    $disponibilidadesConIntervalos = $this->reservaManager
+        ->obtenerDisponibilidadesConIntervalos($idPeluquero, $mesSeleccionado);
 
     return $this->render('reserva/disponibilidad2.html.twig', [
         'disponibilidades' => $disponibilidadesConIntervalos,
@@ -91,5 +70,7 @@ public function mostrarDisponibilidad(int $idPeluquero, Request $request): Respo
         'mes' => $mesSeleccionado,
     ]);
 }
+
+
 
 }
