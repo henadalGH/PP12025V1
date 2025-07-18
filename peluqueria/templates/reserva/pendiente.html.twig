@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas Pendientes{% endblock %}
+
+{% block body %}
+    <div class="encabezado">
+        {% include 'header/headerPeluquero.html.twig' %}
+    </div>
+
+    <h1>Citas Pendientes</h1>
+
+    {% if citas is not empty %}
+        <ul>
+            {% for cita in citas %}
+                <li>
+                    Fecha: {{ cita.fechaHora|date('Y-m-d H:i') }} <br>
+                    Nombre del cliente: {{ cita.cliente.usuario.nombre }} {{cita.cliente.usuario.apellido}}<br>
+                    Servicio: {{cita.servicio.nombre}}
+                    <button>Confirmar</boton>
+                     <button>Cancelar</boton>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay citas pendientes.</p>
+    {% endif %}
+{% endblock %}

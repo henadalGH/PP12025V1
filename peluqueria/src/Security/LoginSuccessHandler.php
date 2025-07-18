@@ -21,7 +21,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         } elseif (in_array('ROLE_CLIENTE', $roles)) {
             return new RedirectResponse($this->router->generate('cliente'));
         } elseif (in_array('ROLE_PELUQUERO', $roles)) {
-            return new RedirectResponse($this->router->generate('reservas'));
+            return new RedirectResponse($this->router->generate('peluquero'));
         }
 
         return new RedirectResponse($this->router->generate('pagina_principal'));

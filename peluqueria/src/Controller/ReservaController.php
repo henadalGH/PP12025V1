@@ -1,76 +1,105 @@
 <?php
+
 namespace App\Controller;
 
-use App\Manager\ReservaManager; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Manager\ReservaManager;
 
 class ReservaController extends AbstractController
 {
-    private ReservaManager $reservaManager;
-
-    public function __construct(ReservaManager $reservaManager)
-    {
-        $this->reservaManager = $reservaManager;
-    }
     
-    #[Route('/cliente', name: 'cliente')]
-    public function TraerServicio(ReservaManager $reservamanager): Response
+    private ReservaManager $resevaManager;
+    public function __construct(ReservaManager $resevaManager)
     {
-        $servicio = $reservamanager->findAllServicio();  
-        
-        return $this->render('reservar/inicioReserva.html.twig', [
-            'servicio' => $servicio, 
+        $this->reservaManager = $resevaManager;
+    }
+
+   #[Route('/cliente', name: 'cliente')]
+   public function Cliente(ReservaManager $reservaManager)
+   {
+        $servicios = $reservaManager->getServicio();
+        return $this->render('reserva/inicioReserva.html.twig', [
+            'servicio' => $servicios
+            
         ]);
-    }
 
-    #[Route('/reserva', name: 'reservas')]
-    public function getServicio(ReservaManager $reservamanager): Response
-    {
-        $servicio = $reservamanager->findAllServicio();  
-        $peluquero = $reservamanager->findAllPeluquero();
-        
-        return $this->render('reserva/reserva.html.twig', [
-            'servicio' => $servicio, 
-            'peluquero' => $peluquero
-        ]);
-    }
-
-    #[Route('/reserva_nueva', name: 'nueva_reservas', methods: ['POST'])]
-    public function nuevaReserva(ReservaManager $reservamanager): Response
-    {
-        
-    }
-
-    #[Route('/reserva/peluquero', name: 'enviar_Peluquero', methods: ['POST'])]
-    public function VerDisponibilidad(Request $request): Response
-    {
-        $idPeluquero = $request->request->get('peluquero');
-
-        $this->reservaManager->obtenerDisponibilidadPorPeluquero($idPeluquero);
-
-        return $this->redirectToRoute('mostrar_disponibilidad',['idPeluquero'=>$idPeluquero]);
-    }
-
-    #[Route('/disponibilidad/{idPeluquero}', name: 'mostrar_disponibilidad')]
-public function mostrarDisponibilidad(int $idPeluquero, Request $request): Response
+   }
+   
+    #[Route('/reserva', name: 'reserva', methods: ['GET'])]
+public function reserva(Request $request, ReservaManager $reservaManager): Response
 {
-    $mesSeleccionado = (int) $request->query->get('mes', (new \DateTime())->format('n'));
+    $servicios = $reservaManager->getServicio();
+    $peluqueros = $reservaManager->getPeluquero();
+
+
+    $servicioSeleccionado = (int) $request->query->get('servicio', $servicios[0]->getId());
+
+    $idPeluquero = (int) $request->query->get('idPeluquero', $peluqueros[0]->getId());
+    $mes = (int) $request->query->get('mes', date('n'));
+    $anio = (int) $request->query->get('anio', date('Y'));
     $diaSeleccionado = $request->query->get('dia');
 
-    $disponibilidadesConIntervalos = $this->reservaManager
-        ->obtenerDisponibilidadesConIntervalos($idPeluquero, $mesSeleccionado);
+    $disponibilidades = $reservaManager->obtenerDisponibilidadesConIntervalos($idPeluquero, $mes, $anio);
+    $diasDelMes = array_map(fn($d) => $d['dia'], $disponibilidades);
 
-    return $this->render('reserva/disponibilidad2.html.twig', [
-        'disponibilidades' => $disponibilidadesConIntervalos,
+    return $this->render('reserva/reserva.html.twig', [
+        'servicio' => $servicios,
+        'peluquero' => $peluqueros,
+        'disponibilidades' => $disponibilidades,
+        'diasDelMes' => $diasDelMes,
         'diaSeleccionado' => $diaSeleccionado,
         'idPeluquero' => $idPeluquero,
-        'mes' => $mesSeleccionado,
+        'servicioSeleccionado' => $servicioSeleccionado,
+        'mes' => $mes,
+        'anio' => $anio,
     ]);
 }
 
+    #[Route('/confirmar', name: 'confirmarReserva' , methods: ['POST'])]
+public function confirmarReserva(Request $request): Response
+{
+    $reserva = [
+        'idCliente'   => (int) $request->request->get('idCliente'),
+        'idServicio'  => (int) $request->request->get('servicio'),
+        'idPeluquero' => (int) $request->request->get('idPeluquero'),
+        'dia'         => (int) $request->request->get('dia'),
+        'mes'         => (int) $request->request->get('mes'),
+        'anio'        => (int) $request->request->get('anio'),
+        'hora'        => $request->request->get('hora'), 
+    ];
 
+    $this->reservaManager->crearReserva($reserva);
 
+    return $this->redirectToRoute('reserva');
 }
+
+#[Route('/peluquero', name: 'peluquero')]
+public function inicioPeluquero(ReservaManager $reservaManager, Request $request): Response
+{   
+
+    $idPeluquero = (int) $request->query->get('idPeluquero');
+    $reserva = $reservaManager->obtenerCitasPendiente($idPeluquero);
+    return $this->render('reserva/inicioPeluquero.html.twig', [
+        'reserva' => $reserva 
+    ]);
+}
+
+#[Route('/peluquero', name: 'peluquero')]
+    public function citasPendientes(ReservaManager $reservaManager): Response
+    {
+        $peluquero = $this->getUser();
+
+        $citas = $reservaManager->obtenerCitasPendientePorPeluquero($peluquero->getId());
+
+        return $this->render('reserva/pendiente.html.twig', [
+            'citas' => $citas
+        ]);
+    }
+}
+
+
+
+

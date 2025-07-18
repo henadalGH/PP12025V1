@@ -1,28 +1,133 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservas{% endblock %}
+{% block title %}Reserva de Turno{% endblock %}
 
 {% block body %}
-<link href="{{ asset('CSS/servicio.css') }}" rel="stylesheet" />
+<link href="{{ asset('CSS/reserva.css') }}" rel="stylesheet" />
+<div class="encabezado">
     {% include 'headerCliente/headerCliente.html.twig' %}
-
-<div class="Contenedor_total">
-<form action="{{ path('enviar_Peluquero') }}" method="post">
-    <label for="servicio">Elija un servicio</label>
-    <select name="servicio" id="servicio" required>
-        {% for servicio in servicio %}
-            <option value="{{ servicio.id }}">{{ servicio.nombre }} ({{ servicio.duracion }} minutos)</option>
-        {% endfor %}
-    </select>
-
-    <label for="peluquero">Elija a su peluquero</label>
-    <select name="peluquero" id="peluquero" required>
-        {% for peluquero in peluquero %}
-            <option value="{{ peluquero.id }}">{{ peluquero.nombre }} {{ peluquero.apellido }}</option>
-        {% endfor %}
-    </select>
-
-    <button type="submit">Siguiente</button>
-</form>
 </div>
+
+<h1>Reservar turno</h1>
+
+<form method="get" action="{{ path('reserva') }}" id="reservaForm">
+    <div>
+        <label for="servicios">Servicio:</label>
+        <select name="servicio" id="servicios" onchange="document.getElementById('reservaForm').submit();">
+            {% for s in servicio %}
+                <option value="{{ s.id }}">{{ s.nombre }} ({{ s.duracion }} min)</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="peluquero">Peluquero:</label>
+        <select name="idPeluquero" id="peluquero" onchange="document.getElementById('reservaForm').submit();">
+            {% for p in peluquero %}
+                <option value="{{ p.id }}" {% if p.id == idPeluquero %}selected{% endif %}>
+                    {{ p.nombre }} {{ p.apellido }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+</form>
+
+
+<div style="display: flex; align-items: center; gap: 1rem; margin: 20px 0;">
+    <form method="get" action="{{ path('reserva') }}" style="display: inline;">
+        <input type="hidden" name="idPeluquero" value="{{ idPeluquero }}">
+        <input type="hidden" name="mes" value="{{ mes > 1 ? mes - 1 : 12 }}">
+        <input type="hidden" name="anio" value="2025">
+        <button type="submit"> Mes anterior</button>
+    </form>
+
+    <strong style="font-size: 1.2em;">{{ mes }}/2025</strong>
+
+    <form method="get" action="{{ path('reserva') }}" style="display: inline;">
+        <input type="hidden" name="idPeluquero" value="{{ idPeluquero }}">
+        <input type="hidden" name="mes" value="{{ mes < 12 ? mes + 1 : 1 }}">
+        <input type="hidden" name="anio" value="2025">
+        <button type="submit">Mes siguiente →</button>
+    </form>
+</div>
+
+<h2>Calendario para {{ mes }}/2025</h2>
+
+<table border="1" style="border-collapse: collapse; width: 100%; text-align: center;">
+    <thead>
+        <tr>
+            <th>Lun</th><th>Mar</th><th>Mié</th><th>Jue</th><th>Vie</th><th>Sáb</th><th>Dom</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set dia = 1 %}
+        {% for semana in 1..5 %}
+            <tr>
+                {% for diaSemana in 1..7 %}
+                    {% if dia <= 31 %}
+                        {% if dia in diasDelMes %}
+                            {% if diaSeleccionado is defined and diaSeleccionado == dia %}
+                                <td style="background-color: #8fbc8f; font-weight: bold;">{{ dia }}</td>
+                            {% else %}
+                                <td>
+                                    <a href="{{ path('reserva', {
+                                        idPeluquero: idPeluquero,
+                                        mes: mes,
+                                        anio: 2025,
+                                        dia: dia
+                                    }) }}">
+                                        {{ dia }}
+                                    </a>
+                                </td>
+                            {% endif %}
+                        {% else %}
+                            <td style="color: #ccc;">–</td>
+                        {% endif %}
+                        {% set dia = dia + 1 %}
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- HORARIOS DISPONIBLES -->
+{% if diaSeleccionado is defined and diaSeleccionado %}
+    <h3>Seleccioná horario para el {{ diaSeleccionado }}/{{ mes }}/2025</h3>
+
+    <form method="post" action="{{ path('confirmarReserva') }}">
+        <input type="hidden" name="dia" value="{{ diaSeleccionado }}">
+        <input type="hidden" name="mes" value="{{ mes }}">
+        <input type="hidden" name="anio" value="2025">
+        <input type="hidden" name="idPeluquero" value="{{ idPeluquero }}">
+        <input type="hidden" name="servicio" value="{{ servicioSeleccionado ?? '' }}">
+
+        {% if app.user and app.user.id %}
+            <input type="hidden" name="idCliente" value="{{ app.user.id }}">
+        {% endif %}
+
+        <label for="hora">Hora:</label>
+        <select name="hora" id="hora">
+            {% set horariosEncontrados = false %}
+            {% for d in disponibilidades %}
+                {% if d.dia == diaSeleccionado %}
+                    {% for h in d.intervalos %}
+                        <option value="{{ h }}">{{ h }}</option>
+                        {% set horariosEncontrados = true %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            {% if not horariosEncontrados %}
+                <option>No hay horarios disponibles</option>
+            {% endif %}
+        </select>
+
+        {% if horariosEncontrados %}
+            <button type="submit">Reservar</button>
+        {% endif %}
+    </form>
+{% endif %}
+
 {% endblock %}

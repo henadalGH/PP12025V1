@@ -29,7 +29,7 @@ class Reserva
     private ?\DateTime $fechaHora = null;
 
     #[ORM\Column(length: 100)]
-    private ?string $estado = null;
+    private ?string $estado = 'pendiente';
 
 
     public function getId(): ?int

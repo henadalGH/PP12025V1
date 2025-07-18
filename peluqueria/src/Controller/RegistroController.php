@@ -25,6 +25,7 @@ final class RegistroController extends AbstractController
             'apellido' => $request->request->get('apellido'),
             'email'    => $request->request->get('email'),
             'password' => $request->request->get('password'),
+            'contacto' => $request->request->get('contacto')
             
         ];
 

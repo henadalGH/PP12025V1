@@ -1,0 +1,19 @@
+{# templates/security/login.html.twig #}
+{% extends 'base.html.twig' %}
+{# ... #}
+{% block body %}
+<div class="encabezado">
+    {% include 'header/headerPeluquero.html.twig' %}
+</div>
+    
+    <h1>Lista se citas a confirmar</h1>
+    {% if app.user and app.user.id %}
+        <input type="hidden" name="idPeluquero" value="{{ app.user.id }}">
+    {% endif %}
+
+    {% for pendiente in reserva %}
+    <p>{{ pendiente.id }}</p>
+    {% endfor %}
+
+
+{% endblock %}

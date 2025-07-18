@@ -35,7 +35,7 @@ class DisponibilidadManager
 
         if ($existe) {
             throw new \LogicException("Ya existe una disponibilidad para este peluquero en esa fecha.");
-        }
+        } 
 
         $disponibilidad = new Disponibilidad();
         $disponibilidad->setDia($dia);
