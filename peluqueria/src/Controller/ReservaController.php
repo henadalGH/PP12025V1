@@ -98,6 +98,18 @@ public function inicioPeluquero(ReservaManager $reservaManager, Request $request
             'citas' => $citas
         ]);
     }
+
+    
+#[Route('/estado/{id}', name: 'estado', methods: ['POST'])]
+    public function CambiarEstado(ReservaManager $reservaManager, Request $request, int $id): Response
+    {   
+            $estado = $request->request->get('estado');
+            //$this->idReserva = $id;
+            $this->reservaManager->CambiarEstado($estado, $id);
+
+            return $this->redirectToRoute('peluquero');
+    }
+
 }
 
 

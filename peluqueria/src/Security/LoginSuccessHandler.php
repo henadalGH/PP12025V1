@@ -17,7 +17,7 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         $roles = $token->getRoleNames();
 
         if (in_array('ROLE_ADMIN', $roles)) {
-            return new RedirectResponse($this->router->generate('disponibilidad'));
+            return new RedirectResponse($this->router->generate('administrador'));
         } elseif (in_array('ROLE_CLIENTE', $roles)) {
             return new RedirectResponse($this->router->generate('cliente'));
         } elseif (in_array('ROLE_PELUQUERO', $roles)) {

@@ -9,15 +9,18 @@
 
     <h1>Citas Pendientes</h1>
 
+.
     {% if citas is not empty %}
         <ul>
             {% for cita in citas %}
                 <li>
-                    Fecha: {{ cita.fechaHora|date('Y-m-d H:i') }} <br>
+                    Fecha: {{ cita.fechaHora|date('Y-m-d H:i') }}<br>
                     Nombre del cliente: {{ cita.cliente.usuario.nombre }} {{cita.cliente.usuario.apellido}}<br>
-                    Servicio: {{cita.servicio.nombre}}
-                    <button>Confirmar</boton>
-                     <button>Cancelar</boton>
+                    Servicio: {{cita.servicio.nombre}}<br>
+                    <form method="POST" action="{{ path('estado', {id: cita.id}) }}">
+                        <button type="submit" name="estado" value="confirmada">Confirmar</button>
+                        <button type="submit" name="estado" value="cancelada">Cancelar</button>
+                    </form>
                 </li>
             {% endfor %}
         </ul>

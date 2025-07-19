@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="Encabezado">
+    {% include 'header/headerAdministrador.html.twig' %}
+</div>
+    <h1>Listas de peluqueros</h1>
+    <a href="{{path('peluqueros_registrar')}}">Agregar peluquero</a>
+<div >
+
+    <lo>
+    {% for p in peluqueros %}
+        <li>
+        Nombre: {{p.usuario.nombre}} {{p.usuario.apellido}}
+        Contacto: {{p.usuario.email}}
+        <a>Bar de Baja</a>
+        </li>
+        
+    {% endfor %}
+    </lo>
+</div>
+
+{% endblock %}
