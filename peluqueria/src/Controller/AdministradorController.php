@@ -19,8 +19,11 @@ final class AdministradorController extends AbstractController
     #[Route('/administrador', name: 'administrador')]
     public function inicioAdminstrador(): Response
     {
+        $peluqueros = $this->admManager->obtenerPeluqueros();
+        $cliente = $this->admManager->obtenerClientes();
         return $this->render('administrador/inicioAdministrador.html.twig', [
-            'controller_name' => 'PeluqueroController',
+            'peluqueros' => $peluqueros,
+            'cliente'=> $cliente
         ]);
     }
 
@@ -50,6 +53,15 @@ final class AdministradorController extends AbstractController
         ];
 
         $this->admManager->registrarPeluquero($nPeluquero); 
+
+        return $this->redirectToRoute('administrador_peluqueros');
+    }
+
+
+    #[Route('/administrador/peluquero/baja/{id}', name: 'peluquero_baja')]
+    public function borrarPeluquero(int $id, AdministradorManager $admManager)
+    {
+        $this->admManager->eleminarPeluquero($id);
 
         return $this->redirectToRoute('administrador_peluqueros');
     }

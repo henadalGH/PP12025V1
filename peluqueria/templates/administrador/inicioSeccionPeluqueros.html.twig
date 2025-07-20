@@ -14,7 +14,10 @@
         <li>
         Nombre: {{p.usuario.nombre}} {{p.usuario.apellido}}
         Contacto: {{p.usuario.email}}
-        <a>Bar de Baja</a>
+        <form method="post" action="{{ path('peluquero_baja', {'id': p.usuario.id}) }}" onsubmit="return confirm('¿Estás seguro de que querés eliminar este usuario?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('eliminar_usuario_' ~ p.usuario.id) }}">
+        <button class="btn btn-danger">Dar baja</button>
+        </form>
         </li>
         
     {% endfor %}

@@ -6,4 +6,38 @@
     {% include 'header/headerAdministrador.html.twig' %}
 </div>
 
+    <h1>Bienvenido administrador "{{app.user.nombre}} {{app.user.apellido}}"</h1>
+
+
+    <div class="lista_peluueros">
+    <h3>Lista de peluqueros en actividad</h3>
+    <lo>
+    {% for p in peluqueros %}
+        <li>
+        Nombre: {{p.usuario.nombre}} 
+        Apellido: {{p.usuario.apellido}}
+        Contacto: {{p.usuario.email}}
+        
+        </li>
+        
+    {% endfor %}
+    </lo>
+    </div>
+
+    <div class="lista_cliente">
+    <h3>Lista de cliente registrados</h3>
+    <lo>
+    {% for c in cliente %}
+        <li>
+        Nombre: {{c.usuario.nombre}} 
+        Apellido: {{c.usuario.apellido}}
+        Correo: {{c.usuario.email}}
+        Telefono de contacto: {{c.contacto}}
+        
+        </li>
+        
+    {% endfor %}
+    </lo>
+    </div>
+
 {% endblock %}
