@@ -109,6 +109,18 @@ public function inicioPeluquero(ReservaManager $reservaManager, Request $request
             return $this->redirectToRoute('peluquero');
     }
 
+    #[Route('/peluquero/confirmadas', name: 'peluquero_confirmada')]
+    public function citasConfirmadas(ReservaManager $reservaManager): Response
+    {
+        $peluquero = $this->getUser();
+
+        $citas = $reservaManager->obtenerCitasConfirmadasPorPeluquero($peluquero->getId());
+
+        return $this->render('peluquero/inicioPeluquero.html.twig', [
+            'citas' => $citas
+        ]);
+    }
+
 }
 
 

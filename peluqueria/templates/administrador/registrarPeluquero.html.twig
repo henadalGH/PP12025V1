@@ -3,8 +3,9 @@
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
     <div class="registro-container">
-        <h1>Registro de Usuario</h1>
-
+        <div class="encabezado">
+        <h1>Registro a un peluqero</h1>
+        </div>
         <form action="{{ path('peluqueros_agregar') }}" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -14,9 +15,10 @@
             <input type="text" id="email" name="email" required>
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>
-            <button type="Submit">Registrar</button>
+            <button class="boton1" type="Submit">Registrar</button>
         </form>
-            <button>Cancelar</button>
+        <br>
+            <button class="boton2"><a href="{{path('administrador_peluqueros')}}">Cancelar</a></button>
 
     </div>
 {% endblock %}

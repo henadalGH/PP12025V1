@@ -9,8 +9,8 @@
         <h1 class="titulo_principal">Peluquería Elegante</h1>
         <div class="barra">
             <nav>
-                <a>Inicio<a/>
-                <a href="#">Reservas pendientes</a>
+                <a href="{{path('peluquero_confirmada')}}">Reservas confirmadas</a>
+                <a href="{{path('peluquero')}}">Reservas pendientes</a>
                 <a href="{{ path('app_logout') }}">Cerrar sesión</a>
             </nav>
         </div>

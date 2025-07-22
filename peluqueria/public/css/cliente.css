@@ -1,159 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-/* ====== RESET Y FUENTE ====== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* FONDO GENERAL */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f2f2f2;
-    color: #2c2c2c;
-    line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+  color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ====== HEADER GENERAL ====== */
-header {
-    background-color: #e5e5e5;
-    padding: 40px 20px;
-    border-bottom: 1px solid #ccc;
+/* ENCABEZADO CLIENTE */
+.encabezado-cliente {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
 
-header h1 {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #111;
-}
-
-/* ====== CONTENEDOR DE CITA ====== */
+/* SECCIÓN RESERVA */
 .Contenedor_citas {
-    padding: 60px 20px;
-    background-color: #eaeaea;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
+  background-image: url('https://cdn.pixabay.com/photo/2016/11/29/04/17/barber-1866481_960_720.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+  box-shadow: inset 0 0 100px #000000aa;
 }
 
 .Contenedor_citas h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #111;
+  font-size: 36px;
+  color: #ff4d4d;
 }
 
 .Contenedor_citas p {
-    font-size: 1.1rem;
-    color: #444;
-    margin-bottom: 25px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+  font-size: 18px;
+  margin-top: 10px;
 }
 
 .Contenedor_citas button {
-    background-color: #c26ba3;
-    color: white;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.Contenedor_citas button:hover {
-    background-color: #a25485;
+  margin-top: 20px;
+  background-color: #ff4d4d;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: 0.3s ease;
 }
 
 .Contenedor_citas button a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
-/* ====== CONTENEDOR TOTAL Y SECCIÓN DE SERVICIOS ====== */
+.Contenedor_citas button:hover {
+  background-color: #e60000;
+}
+
+/* CONTENEDOR TOTAL */
 .Contenedor_total {
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: auto;
+  padding: 50px 20px;
+  background-color: #1e1e1e;
 }
 
+/* SERVICIOS */
 .TituloH2 {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #111;
+  text-align: center;
+  font-size: 30px;
+  color: #ff4d4d;
+  margin-bottom: 30px;
 }
 
-/* ====== TARJETAS DE SERVICIO ====== */
 .Servicio {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 25px;
-    padding: 0 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 .Contenedor_servicios {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-}
-
-.Contenedor_servicios:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 20px;
+  color: #f0f0f0;
+  box-shadow: 0 0 10px #000;
 }
 
 .Contenedor_servicios h3 {
-    color: #c26ba3;
-    margin-bottom: 10px;
-    font-size: 1.2em;
+  color: #ff4d4d;
+  margin-bottom: 10px;
 }
 
-.Contenedor_servicios p {
-    color: #555;
-    font-size: 0.95em;
-    margin-bottom: 6px;
+/* CONTACTO */
+.contacto {
+  margin-top: 50px;
+  padding: 40px 20px;
+  background-color: #111;
+  color: white;
+  border-top: 2px solid #ff4d4d;
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-        text-align: center;
-    }
-
-    .Contenedor_citas h2,
-    .TituloH2 {
-        font-size: 1.6rem;
-    }
-
-    .Servicio {
-        grid-template-columns: 1fr;
-    }
-
-    .contacto {
-    background-color: #eaeaea;
-    padding: 60px 20px;
-    text-align: center;
-    margin-top: 60px;
-    border-radius: 10px;
-}
-
-.contacto h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #111;
+.contacto .seccion_titulo {
+  font-size: 28px;
+  color: #ff4d4d;
+  margin-bottom: 20px;
 }
 
 .contacto p {
-    font-size: 1.1em;
-    color: #444;
-    max-width: 700px;
-    margin: auto;
+  font-size: 16px;
+  line-height: 1.6;
 }
-}
-
-

@@ -1,12 +1,23 @@
+/* ====== ESTILO GENERAL ====== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e1f26, #121418);
+    color: #e0e6f0;
+}
+
 /* ====== ENCABEZADO GENERAL ====== */
 .Contenedor_encabezado {
-     background-image: url('https://images.unsplash.com/photo-1588776814546-a2d30a1a7c88');
+    
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 20px 40px;
-    border-bottom: 1px solid #ccc;
-    color: white; /* Cambia color de texto si la imagen es oscura */
+    padding: 40px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    backdrop-filter: brightness(0.6);
 }
 
 /* Flex para alinear título y barra */
@@ -15,14 +26,16 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
-/* Título alineado a la izquierda */
+/* Título estilizado */
 .titulo_principal {
     font-size: 2.8rem;
-    font-weight: 700;
-    color: #111;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     margin: 0;
+    color: #da2424; /* Rojo fuerte para el título */
 }
 
 /* ====== NAVIGATION BAR ====== */
@@ -33,27 +46,28 @@
 }
 
 .barra nav a {
-    background-color: #222;
+    background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
     text-decoration: none;
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 600;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.barra nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
 /* Botón especial: cerrar sesión */
 .barra nav a[href*="logout"] {
-    background-color: #b93333;
+    background-color: rgba(185, 51, 51, 0.85);
 }
 
 .barra nav a[href*="logout"]:hover {
-    background-color: #991f1f;
-}
-
-.barra nav a:hover {
-    background-color: #444;
+    background-color: rgba(153, 31, 31, 0.95);
 }
 
 /* ====== RESPONSIVE ====== */
@@ -61,10 +75,10 @@
     .encabezado_flex {
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        text-align: center;
     }
 
-    .titulo_principal {
-        text-align: center;
+    .barra nav {
+        justify-content: center;
     }
 }

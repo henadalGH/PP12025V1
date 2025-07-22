@@ -4,16 +4,7 @@
 
 {% block body %}
 <link href="{{ asset('CSS/citaspendientes.css') }}" rel="stylesheet" />
-
-<div class="Contenedor_encabezado">
-    <h1 class="titulo_principal">Peluquería Elegante</h1>
-    <div class="barra">
-        <nav>
-            <a href="#">Reservas pendientes</a>
-            <a href="{{ path('app_logout') }}">Cerrar sesión</a>
-        </nav>
-    </div>
-</div>
+{% include "header/headerPeluquero.html.twig" %}
 
 <h1>Lista de citas pendiente</h1>
 

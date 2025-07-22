@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block body %}
+<link href="{{ asset('CSS/citaspendientes.css') }}" rel="stylesheet" />
+<div>
+    {% include 'header/headerPeluquero.html.twig' %}
+    </div>
+<div class="titulo">
+    <h1>Lista de citas confirmada<h1>
+</div>
+
+<div class="listas_citas">
+    {% for c in citas %}
+    <strong>Nombre del cliente:</strong>{{ c.cliente.usuario.nombre }} {{c.cliente.usuario.apellido}}
+    <strong>Fecha y Hora:</strong>{{ c.fechaHora|date('d/m/Y H:i') }} <br>   
+    <strong>Servicio:</strong>{{c.servicio.nombre}}
+    <strong>Descripcion del servicio:</strong>{{c.servicio.descripcion}}
+    {% endfor %}
+</div>
+
+{% endblock %}

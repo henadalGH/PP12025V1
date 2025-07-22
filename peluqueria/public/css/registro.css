@@ -9,8 +9,12 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f2f2f2;
-    color: #2c2c2c;
+    background-image: linear-gradient(to bottom right, rgba(14, 14, 26, 0.4), rgba(20, 20, 35, 0.5)),
+                      url("https://png.pngtree.com/background/20230516/original/pngtree-hair-salon-has-a-dark-wood-look-picture-image_2600375.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #eaeaea;
     line-height: 1.6;
     display: flex;
     justify-content: center;
@@ -19,23 +23,28 @@ body {
     padding-top: 60px;
 }
 
-/* ====== CONTENEDOR DE REGISTRO ====== */
+/* ====== CONTENEDOR DE REGISTRO MEJORADO ====== */
 .registro-container {
-    background: white;
+    background: rgba(18, 18, 30, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 40px 35px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
     width: 100%;
     max-width: 500px;
     box-sizing: border-box;
+    animation: fadeIn 0.7s ease-out;
 }
 
 .registro-container h1 {
     margin-bottom: 30px;
     font-weight: 700;
     font-size: 2.2rem;
-    color: #111;
+    color: #ffffff;
     text-align: center;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
 }
 
 /* ====== FORMULARIO ====== */
@@ -47,22 +56,27 @@ body {
 
 .registro-container label {
     font-weight: 600;
-    color: #555;
+    color: #dddddd;
     margin-bottom: 5px;
 }
 
 .registro-container input {
     padding: 12px 14px;
     font-size: 1rem;
-    border: 1.8px solid #ccc;
-    border-radius: 8px;
-    transition: border-color 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    transition: all 0.3s ease;
     width: 100%;
+    backdrop-filter: blur(3px);
 }
 
 .registro-container input:focus {
-    border-color: #c26ba3;
+    border-color: #00ffb3;
+    background-color: rgba(255, 255, 255, 0.08);
     outline: none;
+    box-shadow: 0 0 5px #00ffb3;
 }
 
 /* ====== BOTONES ====== */
@@ -70,12 +84,40 @@ body {
     padding: 14px 0;
     font-weight: 700;
     font-size: 1.1rem;
-    border-radius: 25px;
+    border-radius: 0px;
     cursor: pointer;
     border: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s, box-shadow 0.2s;
     color: white;
     width: 100%;
+}
+
+/* ====== ESTILO BOTÓN PRINCIPAL ====== */
+.boton1 {
+    background-color: #00c18b;
+    box-shadow: 0 0 10px #00c18b;
+}
+
+.boton1:hover {
+    background-color: #00ffb3;
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #00ffb3;
+}
+
+/* ====== BOTONES SECUNDARIOS ====== */
+.boton2 {
+    background-color: #ff0059;
+    box-shadow: 0 0 10px #ff0059;
+    
+}
+a{
+    text-decoration: none;
+}
+
+.boton2:hover {
+    background-color: #ff4d87;
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #ff4d87;
 }
 
 .boton1, .boton2 {
@@ -83,34 +125,13 @@ body {
     padding: 14px 0;
     font-weight: 700;
     font-size: 1.1rem;
-    border-radius: 10px;
+    border-radius: 0px;
     cursor: pointer;
     border: none;
-    transition: background-color 0.3s ease;
-    color: white;
     text-align: center;
     user-select: none;
     min-width: 130px;
 }
-
-/* ====== ESTILO BOTÓN PRINCIPAL ====== */
-.boton1 {
-    background-color: #7bc26b;
-}
-
-.boton1:hover {
-    background-color: #39e74e;
-}
-
-/* ====== BOTONES SECUNDARIOS ====== */
-.boton2 {
-    background-color: #fa0202;
-}
-
-.boton2:hover {
-    background-color: #b14343;
-}
-
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 500px) {
@@ -121,5 +142,17 @@ body {
 
     .registro-container button {
         font-size: 1rem;
+    }
+}
+
+/* ====== ANIMACIÓN DE ENTRADA ====== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

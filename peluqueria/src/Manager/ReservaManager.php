@@ -143,4 +143,16 @@ public function obtenerCitasPendientePorPeluquero(int $idPeluquero): array
     //$this->addFlash('success', 'La cita fue ' . $estado . ' correctamente.');
 }
 
+public function obtenerCitasConfirmadasPorPeluquero(int $idPeluquero): array
+    {
+        $peluquero = $this->peluqueroRepository->find($idPeluquero);
+        
+
+        return $this->reservaRepository->findBy([
+            'peluquero' => $peluquero,
+            'estado' => 'confirmado'
+        ], ['fechaHora' => 'ASC']);
+    }
+
+
 }

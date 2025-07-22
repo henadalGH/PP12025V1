@@ -1,9 +1,14 @@
 body {
-  background-color: #e0f2f1; /* fondo suave verde agua */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 30px 20px;
-  color: #004d40;
+    font-family: 'Inter', sans-serif;
+    background-image:
+      linear-gradient(to bottom right, rgba(10,10,15,0.85), rgba(25,20,30,0.95)),
+      url('https://png.pngtree.com/background/20230528/original/pngtree-hair-salon-in-orange-and-black-paint-picture-image_2779526.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #eee;
+    line-height: 1.6;
+    min-height: 100vh;
 }
 
 /* Contenedor general centrado y con max-width */
@@ -103,4 +108,7 @@ h1 {
     max-width: none;
     margin-top: 15px;
   }
+}
+p{
+  color: black;
 }
