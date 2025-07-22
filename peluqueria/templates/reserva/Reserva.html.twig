@@ -4,8 +4,9 @@
 
 {% block body %}
 <link href="{{ asset('CSS/reserva.css') }}" rel="stylesheet" />
+
 <div class="encabezado">
-    {% include 'headerCliente/headerCliente.html.twig' %}
+    {% include 'header/headerReserva.html.twig' %}
 </div>
 
 <h1>Reservar turno</h1>
@@ -15,7 +16,9 @@
         <label for="servicios">Servicio:</label>
         <select name="servicio" id="servicios" onchange="document.getElementById('reservaForm').submit();">
             {% for s in servicio %}
-                <option value="{{ s.id }}">{{ s.nombre }} ({{ s.duracion }} min)</option>
+                <option value="{{ s.id }}" {% if s.id == servicioSeleccionado %}selected{% endif %}>
+                    {{ s.nombre }} ({{ s.duracion }} min)
+                </option>
             {% endfor %}
         </select>
     </div>
@@ -32,26 +35,25 @@
     </div>
 </form>
 
-
 <div style="display: flex; align-items: center; gap: 1rem; margin: 20px 0;">
     <form method="get" action="{{ path('reserva') }}" style="display: inline;">
         <input type="hidden" name="idPeluquero" value="{{ idPeluquero }}">
+        <input type="hidden" name="servicio" value="{{ servicioSeleccionado }}">
         <input type="hidden" name="mes" value="{{ mes > 1 ? mes - 1 : 12 }}">
         <input type="hidden" name="anio" value="2025">
-        <button type="submit"> Mes anterior</button>
+        <button type="submit">Mes anterior</button>
     </form>
 
-    <strong style="font-size: 1.2em;">{{ mes }}/2025</strong>
+    <h2>Calendario para {{ mes }}/2025</h2>
 
     <form method="get" action="{{ path('reserva') }}" style="display: inline;">
         <input type="hidden" name="idPeluquero" value="{{ idPeluquero }}">
+        <input type="hidden" name="servicio" value="{{ servicioSeleccionado }}">
         <input type="hidden" name="mes" value="{{ mes < 12 ? mes + 1 : 1 }}">
         <input type="hidden" name="anio" value="2025">
-        <button type="submit">Mes siguiente →</button>
+        <button type="submit">Mes siguiente</button>
     </form>
 </div>
-
-<h2>Calendario para {{ mes }}/2025</h2>
 
 <table border="1" style="border-collapse: collapse; width: 100%; text-align: center;">
     <thead>
@@ -72,6 +74,7 @@
                                 <td>
                                     <a href="{{ path('reserva', {
                                         idPeluquero: idPeluquero,
+                                        servicio: servicioSeleccionado,
                                         mes: mes,
                                         anio: 2025,
                                         dia: dia
@@ -93,7 +96,6 @@
     </tbody>
 </table>
 
-<!-- HORARIOS DISPONIBLES -->
 {% if diaSeleccionado is defined and diaSeleccionado %}
     <h3>Seleccioná horario para el {{ diaSeleccionado }}/{{ mes }}/2025</h3>
 

@@ -1,23 +1,34 @@
 /* ====== ENCABEZADO GENERAL ====== */
 .Contenedor_encabezado {
-    background-color: #e5e5e5;
-    padding: 40px 20px;
+     background-image: url('https://images.unsplash.com/photo-1588776814546-a2d30a1a7c88');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px 40px;
     border-bottom: 1px solid #ccc;
+    color: white; /* Cambia color de texto si la imagen es oscura */
 }
 
+/* Flex para alinear título y barra */
+.encabezado_flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Título alineado a la izquierda */
 .titulo_principal {
     font-size: 2.8rem;
     font-weight: 700;
     color: #111;
-    text-align: center;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
 /* ====== NAVIGATION BAR ====== */
 .barra nav {
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
@@ -25,13 +36,14 @@
     background-color: #222;
     color: #fff;
     text-decoration: none;
-    padding: 10px 22px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    border-radius: 10px;
     font-weight: 600;
     transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo especial para botón de Cerrar sesión */
+/* Botón especial: cerrar sesión */
 .barra nav a[href*="logout"] {
     background-color: #b93333;
 }
@@ -41,12 +53,18 @@
 }
 
 .barra nav a:hover {
-    background-color: #555;
+    background-color: #444;
 }
 
-.barra nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+    .encabezado_flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .titulo_principal {
+        text-align: center;
+    }
 }

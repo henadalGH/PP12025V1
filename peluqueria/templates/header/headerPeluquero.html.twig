@@ -3,13 +3,17 @@
 {% block title %}Bienvenido{% endblock %}
 
 {% block body %}
-<link href="{{ asset('CSS/encabezadoCliente.css') }}" rel="stylesheet" />
+
 <div class="Contenedor_encabezado">
-    <h1 class="titulo_principal">Peluqueria Elegante</h1>
+    <div class="encabezado_flex">
+        <h1 class="titulo_principal">Peluquería Elegante</h1>
         <div class="barra">
             <nav>
-                <a>Reservas pendiente</a>
-                <a href="{{path('app_logout')}}">Cerrar sección</a>
+                <a>Inicio<a/>
+                <a href="#">Reservas pendientes</a>
+                <a href="{{ path('app_logout') }}">Cerrar sesión</a>
             </nav>
+        </div>
     </div>
+</div>
 {% endblock %}

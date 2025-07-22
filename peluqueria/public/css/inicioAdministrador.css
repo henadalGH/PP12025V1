@@ -1,0 +1,57 @@
+/* Contenedor general ancho completo */
+.lista_peluqueros, .lista_cliente {
+  width: 100%;
+  max-width: 100%;
+  background: linear-gradient(135deg, #e0f7fa 0%, #ffffff 100%);
+  border-radius: 0;
+  padding: 25px 40px;
+  margin: 0 auto 30px auto;
+  box-shadow: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* Títulos */
+.lista_peluqueros h3, .lista_cliente h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00796b; /* verde azulado suave */
+  text-shadow: none;
+}
+
+/* Lista sin puntos */
+.lista_peluqueros ul, .lista_cliente ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Items de lista */
+.lista_peluqueros li, .lista_cliente li {
+  background: #f9f9f9;
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 18px 25px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Hover suave */
+.lista_peluqueros li:hover, .lista_cliente li:hover {
+  box-shadow: 0 4px 12px rgba(0, 121, 107, 0.2);
+}
+
+/* Etiquetas en negrita con color */
+.lista_peluqueros strong, .lista_cliente strong {
+  color: #004d40;
+}
+
+/* Saltos de línea para separar */
+.lista_peluqueros li br, .lista_cliente li br {
+  margin-bottom: 6px;
+  display: block;
+}

@@ -44,7 +44,7 @@ final class AdministradorController extends AbstractController
 
     #[Route('/administrador/peluqueros/agregar', name: 'peluqueros_agregar', methods: ['POST'])]
     public function agregarPeluquero(Request $request): Response
-    {
+    { 
         $nPeluquero = [
             'nombre' => $request->request->get('nombre'),
             'apellido' => $request->request->get('apellido'),

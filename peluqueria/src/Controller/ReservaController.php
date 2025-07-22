@@ -21,7 +21,7 @@ class ReservaController extends AbstractController
    public function Cliente(ReservaManager $reservaManager)
    {
         $servicios = $reservaManager->getServicio();
-        return $this->render('reserva/inicioReserva.html.twig', [
+        return $this->render('reserva/inicioCliente.html.twig', [
             'servicio' => $servicios
             
         ]);
@@ -94,18 +94,17 @@ public function inicioPeluquero(ReservaManager $reservaManager, Request $request
 
         $citas = $reservaManager->obtenerCitasPendientePorPeluquero($peluquero->getId());
 
-        return $this->render('reserva/pendiente.html.twig', [
+        return $this->render('peluquero/pendiente.html.twig', [
             'citas' => $citas
         ]);
     }
 
     
 #[Route('/estado/{id}', name: 'estado', methods: ['POST'])]
-    public function CambiarEstado(ReservaManager $reservaManager, Request $request, int $id): Response
+    public function cambiarEstado(ReservaManager $reservaManager, Request $request, int $id): Response
     {   
             $estado = $request->request->get('estado');
-            //$this->idReserva = $id;
-            $this->reservaManager->CambiarEstado($estado, $id);
+            $this->reservaManager->cambiarEstado($estado, $id);
 
             return $this->redirectToRoute('peluquero');
     }

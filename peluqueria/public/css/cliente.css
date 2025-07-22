@@ -133,4 +133,27 @@ header h1 {
     .Servicio {
         grid-template-columns: 1fr;
     }
+
+    .contacto {
+    background-color: #eaeaea;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 60px;
+    border-radius: 10px;
 }
+
+.contacto h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.contacto p {
+    font-size: 1.1em;
+    color: #444;
+    max-width: 700px;
+    margin: auto;
+}
+}
+
+

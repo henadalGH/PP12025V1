@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenido{% endblock %}
+
+{% block body %}
+<link href="{{ asset('CSS/citaspendientes.css') }}" rel="stylesheet" />
+
+<div class="Contenedor_encabezado">
+    <h1 class="titulo_principal">Peluquería Elegante</h1>
+    <div class="barra">
+        <nav>
+            <a href="#">Reservas pendientes</a>
+            <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+        </nav>
+    </div>
+</div>
+
+<h1>Lista de citas pendiente</h1>
+
+<div>
+{% for c in citas %}
+    <strong>Nombre del cliente:</strong>{{ c.cliente.usuario.nombre }} {{c.cliente.usuario.apellido}}<br>
+    <strong>Fecha y Hora:</strong>{{ c.fechaHora|date('d/m/Y H:i') }}
+    <form action="{{ path('estado', {'id': c.id}) }}" method="POST">
+            <input type="hidden" name="estado" value="confirmado">
+            <button type="submit">Confirmar</button>
+        </form>
+        <form action="{{ path('estado', {'id': c.id}) }}" method="POST">
+            <input type="hidden" name="estado" value="cancelado">
+            <button type="submit">Cancelar</button>
+        </form>
+
+{% endfor %}
+
+
+</div>
+
+
+{% endblock %}

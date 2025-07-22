@@ -135,12 +135,12 @@ public function obtenerCitasPendientePorPeluquero(int $idPeluquero): array
         ], ['fechaHora' => 'ASC']);
     }
 
-   public function CambiarEstado(String $estado, int $idReserva): void
+   public function cambiarEstado(String $estado, int $idReserva): void
 {
     $reserva = $this->reservaRepository->find($idReserva);
     $reserva->setEstado($estado);
     $this->em->flush();
-    $this->addFlash('success', 'La cita fue ' . $estado . ' correctamente.');
+    //$this->addFlash('success', 'La cita fue ' . $estado . ' correctamente.');
 }
 
 }

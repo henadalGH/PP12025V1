@@ -78,21 +78,39 @@ body {
     width: 100%;
 }
 
-.registro-container button[type="submit"] {
-    background-color: #c26ba3;
+.boton1, .boton2 {
+    flex: 1;
+    padding: 14px 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    color: white;
+    text-align: center;
+    user-select: none;
+    min-width: 130px;
 }
 
-.registro-container button[type="submit"]:hover {
-    background-color: #a25485;
+/* ====== ESTILO BOTÓN PRINCIPAL ====== */
+.boton1 {
+    background-color: #7bc26b;
 }
 
-.registro-container button:last-of-type {
-    background-color: #222;
+.boton1:hover {
+    background-color: #39e74e;
 }
 
-.registro-container button:last-of-type:hover {
-    background-color: #555;
+/* ====== BOTONES SECUNDARIOS ====== */
+.boton2 {
+    background-color: #fa0202;
 }
+
+.boton2:hover {
+    background-color: #b14343;
+}
+
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 500px) {

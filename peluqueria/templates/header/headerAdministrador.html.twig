@@ -3,14 +3,14 @@
 {% block title %}Bienvenido{% endblock %}
 
 {% block body %}
-{#<link href="{{ asset('CSS/encabezadoCliente.css') }}" rel="stylesheet" />#}
+<link href="{{ asset('CSS/encabezadoCliente.css') }}" rel="stylesheet" />
 
 <div class="Contenedor_encabezado">
     <h1 class="titulo_principal">Peluqueria Elegante</h1>
         <div class="barra">
             <nav>
-                <a href="{{path('administrador')}}">Inicio<a/>
-                <a href="{{path('disponibilidad')}}">Agenda<a/>
+                <a href="{{path('administrador')}}">Inicio</a>
+                <a href="{{path('disponibilidad')}}">Agenda</a>
                 <a href="{{path('administrador_peluqueros')}}">Peluqeuros</a>
                 <a href="{{path('app_logout')}}">Cerrar sección</a>
             </nav>

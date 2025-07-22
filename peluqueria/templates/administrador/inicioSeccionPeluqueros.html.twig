@@ -2,26 +2,28 @@
 
 
 {% block body %}
+
+<link href="{{ asset('CSS/listaPeluquero.css') }}" rel="stylesheet" />
 <div class="Encabezado">
     {% include 'header/headerAdministrador.html.twig' %}
 </div>
+    <div class="container">
     <h1>Listas de peluqueros</h1>
-    <a href="{{path('peluqueros_registrar')}}">Agregar peluquero</a>
-<div >
+    <a href="{{ path('peluqueros_registrar') }}" class="btn-agregar">Agregar peluquero</a>
 
-    <lo>
     {% for p in peluqueros %}
-        <li>
-        Nombre: {{p.usuario.nombre}} {{p.usuario.apellido}}
-        Contacto: {{p.usuario.email}}
+    <div class="card">
+        <div class="card-info">
+            <p><strong>Nombre:</strong> {{ p.usuario.nombre }} {{ p.usuario.apellido }}</p>
+            <p><strong>Contacto:</strong> {{ p.usuario.email }}</p>
+        </div>
         <form method="post" action="{{ path('peluquero_baja', {'id': p.usuario.id}) }}" onsubmit="return confirm('¿Estás seguro de que querés eliminar este usuario?');">
-        <input type="hidden" name="_token" value="{{ csrf_token('eliminar_usuario_' ~ p.usuario.id) }}">
-        <button class="btn btn-danger">Dar baja</button>
+            <input type="hidden" name="_token" value="{{ csrf_token('eliminar_usuario_' ~ p.usuario.id) }}">
+            <button class="btn-baja" type="submit">Dar baja</button>
         </form>
-        </li>
-        
+    </div>
     {% endfor %}
-    </lo>
 </div>
+
 
 {% endblock %}

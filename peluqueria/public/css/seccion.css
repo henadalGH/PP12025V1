@@ -21,14 +21,15 @@ body {
 
 /* ====== LOGIN BOX ====== */
 .login {
-    background: white;
+    background:white;
     padding: 40px 35px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 50px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 500px;
     box-sizing: border-box;
     text-align: center;
+    border: #111 solid;
 }
 
 .login h2 {
@@ -82,12 +83,12 @@ body {
     flex-wrap: wrap;
 }
 
-.boton1, .boton2 {
+.boton1, .boton2, .boton3 {
     flex: 1;
     padding: 14px 0;
     font-weight: 700;
     font-size: 1.1rem;
-    border-radius: 25px;
+    border-radius: 15px;
     cursor: pointer;
     border: none;
     transition: background-color 0.3s ease;
@@ -123,6 +124,17 @@ body {
     height: 100%;
     line-height: normal;
 }
+
+.boton3 {
+    background-color: #e30c0ca5;
+}
+
+.boton3:hover {
+    background-color: #d11717;
+}
+
+
+
 
 /* ====== MENSAJE DE ERROR ====== */
 .login .error {
