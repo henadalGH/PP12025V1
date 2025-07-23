@@ -13,7 +13,7 @@ class RegistroManager
         private UserPasswordHasherInterface $passwordHasher
     ) {}
 
-    public function nuevoUsuario(array $usuario): void
+    public function crearUsuario(array $usuario): void
     {
         $roles = ["ROLE_CLIENTE"];
 

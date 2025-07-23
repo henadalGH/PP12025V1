@@ -1,11 +1,9 @@
-
-
 /* ====== ESTILO GENERAL ====== */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #02040d, #121418);
+    background: linear-gradient(135deg, #000000, #121418);
     color: #e0e6f0;
 }
 
@@ -20,7 +18,6 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     backdrop-filter: brightness(0.6);
     align-items: center;
-    background-color: #02040d;
 }
 
 /* Flex para alinear título y barra */

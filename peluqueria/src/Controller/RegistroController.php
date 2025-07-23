@@ -29,7 +29,7 @@ final class RegistroController extends AbstractController
             
         ];
 
-        $this->registroManager->nuevoUsuario($usuario);
+        $this->registroManager->crearUsuario($usuario);
 
         return $this->redirectToRoute('login');
     }

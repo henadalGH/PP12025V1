@@ -3,21 +3,27 @@
 {% block title %}Bienvenido{% endblock %}
 
 {% block body %}
-<link href="{{ asset('CSS/citaspendientes.css') }}" rel="stylesheet" />
+
 <div>
     {% include 'header/headerPeluquero.html.twig' %}
     </div>
+
+<link href="{{ asset('CSS/inicioPeluquero.css') }}" rel="stylesheet" />
 <div class="titulo">
-    <h1>Lista de citas confirmada<h1>
+    <h1 class="titulo">Lista de citas confirmada<h1>
 </div>
 
 <div class="listas_citas">
     {% for c in citas %}
+    
+    <div class="lista">
     <strong>Nombre del cliente:</strong>{{ c.cliente.usuario.nombre }} {{c.cliente.usuario.apellido}}
     <strong>Fecha y Hora:</strong>{{ c.fechaHora|date('d/m/Y H:i') }} <br>   
     <strong>Servicio:</strong>{{c.servicio.nombre}}
     <strong>Descripcion del servicio:</strong>{{c.servicio.descripcion}}
+    </div>
     {% endfor %}
+    
 </div>
 
 {% endblock %}
