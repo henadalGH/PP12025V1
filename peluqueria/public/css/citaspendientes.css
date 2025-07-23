@@ -1,87 +1,93 @@
-
-
-/* ====== ESTILO GENERAL ====== */
+/* Imagen de fondo general */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #02040d, #121418);
-    color: #e0e6f0;
-}
 
-/* ====== ENCABEZADO GENERAL ====== */
-.Contenedor_encabezado {
-    display: flex;    
+    /* Imagen de fondo */
+    background-image: url('/ruta/a/tu-imagen.jpg'); /* Cambiá esto por la imagen que subiste o la URL pública */
     background-size: cover;
     background-repeat: no-repeat;
-    padding: 40px 30px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    backdrop-filter: brightness(0.6);
-    align-items: center;
-    background-color: #02040d;
+    background-position: center;
+    background-attachment: fixed;
+
+    /* Overlay oscuro para mantener el contraste */
+    background-color: rgba(0, 0, 0, 0.258);
+    background-blend-mode: overlay;
+
+    color: #f1f1f1;
 }
 
-/* Flex para alinear título y barra */
-.encabezado_flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+/* Título */
+h1 {
+    text-align: center;
+    margin: 40px 0 20px 0;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.8);
 }
 
-/* Título estilizado */
-.titulo_principal {
-    font-size: 2.8rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(183, 16, 130, 0.7);
-    margin-right: 400px;
-    color: #da2424; /* Rojo fuerte para el título */
+/* Contenedor principal de citas */
+.citas-container {
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    padding: 30px;
+    background-color: rgba(123, 103, 97, 0.445); /* Fondo semitransparente */
+    border-radius: 20px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(6px);
 }
 
-/* ====== NAVIGATION BAR ====== */
-.barra nav {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.barra nav a {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
+/* Cada cita */
+.cita {
+    background-color: rgba(255, 255, 255, 0.07);
+    padding: 20px;
+    margin-bottom: 25px;
     border-radius: 12px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
 }
 
-.barra nav a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+/* Negritas */
+.cita strong {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #ffffff;
 }
 
-/* Botón especial: cerrar sesión */
-.barra nav a[href*="logout"] {
-    background-color: rgba(185, 51, 51, 0.85);
+/* Formularios */
+.cita form {
+    display: inline-block;
+    margin-top: 12px;
+    margin-right: 10px;
 }
 
-.barra nav a[href*="logout"]:hover {
-    background-color: rgba(153, 31, 31, 0.95);
+/* Botones */
+.cita button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
-    .encabezado_flex {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
+/* Confirmar */
+.cita button.confirmar {
+    background-color: #28a745;
+    color: white;
+}
 
-    .barra nav {
-        justify-content: center;
-    }
+.cita button.confirmar:hover {
+    background-color: #218838;
+}
+
+/* Cancelar */
+.cita button.cancelar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cita button.cancelar:hover {
+    background-color: #c82333;
 }

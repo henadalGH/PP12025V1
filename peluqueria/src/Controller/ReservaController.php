@@ -87,6 +87,7 @@ public function inicioPeluquero(ReservaManager $reservaManager, Request $request
     ]);
 }
 
+//trae reesevas mendientes
 #[Route('/peluquero', name: 'peluquero')]
     public function citasPendientes(ReservaManager $reservaManager): Response
     {

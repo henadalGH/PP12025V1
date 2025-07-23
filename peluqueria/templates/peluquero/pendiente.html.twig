@@ -6,25 +6,28 @@
 <link href="{{ asset('CSS/citaspendientes.css') }}" rel="stylesheet" />
 {% include "header/headerPeluquero.html.twig" %}
 
-<h1>Lista de citas pendiente</h1>
+<h1>Lista de citas pendientes</h1>
 
-<div>
-{% for c in citas %}
-    <strong>Nombre del cliente:</strong>{{ c.cliente.usuario.nombre }} {{c.cliente.usuario.apellido}}<br>
-    <strong>Fecha y Hora:</strong>{{ c.fechaHora|date('d/m/Y H:i') }}
-    <form action="{{ path('estado', {'id': c.id}) }}" method="POST">
-            <input type="hidden" name="estado" value="confirmado">
-            <button type="submit">Confirmar</button>
-        </form>
-        <form action="{{ path('estado', {'id': c.id}) }}" method="POST">
-            <input type="hidden" name="estado" value="cancelado">
-            <button type="submit">Cancelar</button>
-        </form>
+<div class="citas-container">
+    {% if citas is not empty %}
+        {% for c in citas %}
+            <div class="cita">
+                <strong>Nombre del cliente:</strong> {{ c.cliente.usuario.nombre }} {{ c.cliente.usuario.apellido }}<br>
+                <strong>Fecha y Hora:</strong> {{ c.fechaHora|date('d/m/Y H:i') }}<br>
 
-{% endfor %}
+                <form action="{{ path('estado', {'id': c.id}) }}" method="POST">
+                    <input type="hidden" name="estado" value="confirmado">
+                    <button type="submit" class="confirmar">Confirmar</button>
+                </form>
 
-
+                <form action="{{ path('estado', {'id': c.id}) }}" method="POST">
+                    <input type="hidden" name="estado" value="cancelado">
+                    <button type="submit" class="cancelar">Cancelar</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="sin-citas">No hay citas pendientes en este momento.</p>
+    {% endif %}
 </div>
-
-
 {% endblock %}
