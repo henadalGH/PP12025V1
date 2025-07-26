@@ -23,7 +23,7 @@ class AdministradorManager
         UserPasswordHasherInterface $passwordHasher,
         UsuarioRepository $uRepository,
         EntityManagerInterface $em,
-        clienteRepository $cRepository
+        clienteRepository $cRepository 
     ) {
         $this->pRepository = $pRepository;
         $this->uRepository = $uRepository;
